@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.DS_Store
+node_modules/
+# pages the figure tools write next to the site while rendering
+dist/render*.html

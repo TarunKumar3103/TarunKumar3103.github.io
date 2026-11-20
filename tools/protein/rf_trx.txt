@@ -1,0 +1,4 @@
+trx seed 1: melted in 11500, refold Q>0.8 in 109000, Q 0.87, ents now 8 (native 8 of 20)
+trx seed 2: melted in 12500, refold Q>0.8 in 21000, Q 0.83, ents now 6 (native 6 of 20)
+trx seed 3: melted in 11000, refold Q>0.8 in 23000, Q 0.82, ents now 12 (native 10 of 20)
+trx seed 4: melted in 11000, refold Q>0.8 in 217000, Q 0.80, ents now 15 (native 15 of 20)

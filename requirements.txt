@@ -1,0 +1,3 @@
+# Only needed when the resume PDF changes: build.py redraws the Resume page's picture from it.
+pymupdf
+pillow

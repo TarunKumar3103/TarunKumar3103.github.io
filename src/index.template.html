@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tarun Kumar</title>
+<meta name="description" content="Tarun Kumar builds machine learning systems and research tools, from proteome-scale biology pipelines to evaluations of LLM reasoning.">
+<script>
+/* set the theme before anything paints: saved choice, else the system setting */
+(function () {
+  var pref = 'system';
+  try { pref = localStorage.getItem('tk-theme') || 'system'; } catch (e) { /* storage can be off */ }
+  var dark = pref === 'dark' || (pref === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme-pref', pref);
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&amp;display=swap" rel="stylesheet">
+<style>
+{{STYLES}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="id" href="#home">
+      <span class="id-name">Tarun Kumar</span>
+      <span class="id-role">ML researcher and engineer</span>
+    </a>
+    <nav class="site-nav" aria-label="Pages">
+      <a href="#resume" data-nav="resume">Resume</a>
+      <a href="#research" data-nav="research">Research</a>
+      <a href="#projects" data-nav="projects">Projects</a>
+      <a href="#experience" data-nav="experience">Experience</a>
+    </nav>
+    <div class="tools">
+      <button type="button" class="icon-btn" id="theme-flip" aria-label="Switch to dark theme">
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 13.2A8.5 8.5 0 1 1 10.8 3.5a6.6 6.6 0 0 0 9.7 9.7Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ======================================================== home -->
+<div class="page" data-page="home">
+  <div class="wrap">
+    <section class="map" id="map" aria-label="Map of my work">
+      <div class="map-stage" role="group" aria-describedby="map-help">
+        <canvas aria-hidden="true"></canvas>
+        <div class="map-core">
+          <h1 class="map-name" id="home-h" tabindex="-1">Tarun Kumar</h1>
+          <p class="map-role">ML researcher and engineer</p>
+        </div>
+        <div class="map-labels"></div>
+        <div class="map-card" id="map-card" role="region" aria-labelledby="mc-t" hidden>
+          <div class="mc-head">
+            <button type="button" class="icon-btn mc-back" aria-label="Back to the list" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6l-6 6 6 6"/></svg></button>
+            <h2 class="mc-t" id="mc-t" tabindex="-1"></h2>
+            <button type="button" class="icon-btn mc-x" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg></button>
+          </div>
+          <p class="mc-d"></p>
+          <div class="mc-list"></div>
+          <div class="mc-detail" hidden></div>
+          <a class="mc-more" href="#home"></a>
+        </div>
+      </div>
+      <p class="map-hint">Drag to turn the map. Select a point to see what&rsquo;s in it.</p>
+      <p class="sr-only" id="map-help">My work in eight groups: Experience, Research, Papers and open source, Projects, Competitions, Skills, Education and Certifications. Choose a group to list what is in it. The arrow keys turn the map.</p>
+
+      <!-- What each group lists in the card, laid out as the home page used to list it. Every card opens the item's full entry. -->
+      <template id="mc-tpl-exp">
+        <ol class="list">
+          <li><button type="button" class="card row-exp mc-item" data-node="x-ncems"><span class="mark logo logo-ncems" aria-hidden="true"></span><span class="row-main"><span class="row-t">Research Intern, Machine Learning and Bioinformatics</span><span class="row-o">NSF National Synthesis Center (NCEMS), O&rsquo;Brien Lab</span><span class="row-l">State College, PA</span></span><span class="row-when">March 2026 – Present</span></button></li>
+          <li><button type="button" class="card row-exp mc-item" data-node="x-ai4r"><span class="mark logo logo-ai4r" aria-hidden="true"></span><span class="row-main"><span class="row-t">Undergraduate Researcher</span><span class="row-o">AI4Research Lab, with Prof. Wenpeng Yin</span><span class="row-l">State College, PA</span></span><span class="row-when">January 2026 – Present</span></button></li>
+          <li><button type="button" class="card row-exp mc-item" data-node="x-cil"><span class="mark logo logo-cil" aria-hidden="true"></span><span class="row-main"><span class="row-t">Undergraduate Researcher, Multimodal RAG Systems</span><span class="row-o">Collaboration and Innovation Lab, with He (Albert) Zhang</span><span class="row-l">State College, PA</span></span><span class="row-when">October 2025 – Present</span></button></li>
+          <li><button type="button" class="card row-exp mc-item" data-node="x-writing"><span class="mark logo logo-cil" aria-hidden="true"></span><span class="row-main"><span class="row-t">Research Assistant, AI in Student Writing</span><span class="row-o">Collaboration and Innovation Lab, with Jiyoon Kim</span><span class="row-l">State College, PA</span></span><span class="row-when">October 2025 – January 2026</span></button></li>
+          <li><button type="button" class="card row-exp mc-item" data-node="x-biorob"><span class="mark logo logo-biorob" aria-hidden="true"></span><span class="row-main"><span class="row-t">Research Assistant, Robotics Simulation</span><span class="row-o">BioRob-InFL Lab, with Prof. Bo Cheng</span><span class="row-l">State College, PA</span></span><span class="row-when">September 2025 – December 2025</span></button></li>
+          <li><button type="button" class="card row-exp mc-item" data-node="x-adnoc"><span class="mark logo logo-adnoc" aria-hidden="true"></span><span class="row-main"><span class="row-t">Software Development Intern</span><span class="row-o">ADNOC Gas</span><span class="row-l">Abu Dhabi, UAE</span></span><span class="row-when">June 2025 – August 2025</span></button></li>
+          <li><button type="button" class="card row-exp mc-item" data-node="x-nittany" data-src="x-nittany-adv"><span class="mark logo logo-nittanyai" aria-hidden="true"></span><span class="row-main"><span class="row-t">Advanced Machine Learning Intern</span><span class="row-o">Nittany AI Alliance</span><span class="row-l">State College, PA</span></span><span class="row-when">January 2025 – May 2025</span></button></li>
+          <li><button type="button" class="card row-exp mc-item" data-node="x-nittany" data-src="x-nittany"><span class="mark logo logo-nittanyai" aria-hidden="true"></span><span class="row-main"><span class="row-t">Machine Learning Intern</span><span class="row-o">Nittany AI Alliance</span><span class="row-l">State College, PA</span></span><span class="row-when">August 2024 – December 2024</span></button></li>
+          <li><button type="button" class="card row-exp mc-item" data-node="x-hrc"><span class="mark logo logo-hrc" aria-hidden="true"></span><span class="row-main"><span class="row-t">Software Engineer</span><span class="row-o">Humanoid Robotics Club, Penn State</span><span class="row-l">State College, PA</span></span><span class="row-when">September 2024 – December 2024</span></button></li>
+          <li><button type="button" class="card row-exp mc-item" data-node="x-gddc"><span class="mark logo logo-gddc" aria-hidden="true"></span><span class="row-main"><span class="row-t">Game Developer</span><span class="row-o">Game Design and Development Club, Penn State</span><span class="row-l">State College, PA</span></span><span class="row-when">September 2024 – December 2024</span></button></li>
+        </ol>
+      </template>
+      <template id="mc-tpl-res">
+        <div class="list">
+          <button type="button" class="card post has-thumb mc-item" data-node="r-nofreecheck"><span class="thumb"><canvas data-viz="factorial" aria-hidden="true"></canvas></span><span class="post-body"><span class="post-t">No Free Check: Redundancy Determines What LLM Reasoning Can Verify</span><span class="post-d">When can a language model catch one corrupted value in its own reasoning? A study of how the evidence in its context decides what it can check.</span><span class="tags"><span class="tag">llm-evaluation</span><span class="tag">reasoning</span><span class="tag tag-live">under review</span></span></span></button>
+          <button type="button" class="card post has-thumb mc-item" data-node="r-crossmodal"><span class="thumb thumb-fig fig-semi" aria-hidden="true"></span><span class="post-body"><span class="post-t">Extending LLMs to new modalities</span><span class="post-d">Reproducing a method that connects new modalities to LLMs, and evaluating vision-language models on image, LiDAR, radar and CT data.</span><span class="tags"><span class="tag">multimodal</span><span class="tag">llm-evaluation</span><span class="tag">in progress</span></span></span></button>
+          <button type="button" class="card post has-thumb mc-item" data-node="r-entanglement"><span class="thumb thumb-fig fig-tim" aria-hidden="true"></span><span class="post-body"><span class="post-t">Proteome-scale protein entanglement</span><span class="post-d">Entanglement detection across 555,846 AlphaFold structures from 46 proteomes on Penn State&rsquo;s Roar Collab cluster, with zero failed jobs.</span><span class="tags"><span class="tag">hpc</span><span class="tag">structural-biology</span><span class="tag">python</span></span></span></button>
+          <button type="button" class="card post has-thumb mc-item" data-node="r-cvae"><span class="thumb thumb-fig fig-vae" aria-hidden="true"></span><span class="post-body"><span class="post-t">Batch-effect correction for proteomics</span><span class="post-d">ProteomicsCVAE, an adversarial autoencoder that removes dataset batch effects from mass-spec proteomics while keeping each sample&rsquo;s biology.</span><span class="tags"><span class="tag">pytorch</span><span class="tag">proteomics</span><span class="tag">optuna</span></span></span></button>
+          <button type="button" class="card post has-thumb mc-item" data-node="r-litrag"><span class="thumb thumb-fig fig-litrag" aria-hidden="true"></span><span class="post-body"><span class="post-t">LitRAG and a review of generative-AI tools in HCI</span><span class="post-d">A multimodal retrieval system for reading and synthesizing research literature, and the method behind a systematic review of 80 papers.</span><span class="tags"><span class="tag">rag</span><span class="tag">hci</span><span class="tag">first author</span></span></span></button>
+        </div>
+      </template>
+      <template id="mc-tpl-pap">
+        <ol class="list">
+          <li><button type="button" class="card row-log mc-item" data-node="r-nofreecheck"><span class="row-main"><span class="row-t">No Free Check: Redundancy Determines What LLM Reasoning Can Verify</span><span class="row-o">With He (Albert) Zhang</span></span><span class="row-when">Under review</span></button></li>
+          <li><button type="button" class="card row-log mc-item" data-node="o-convergent"><span class="row-main"><span class="row-t">Convergent Design Responses, Persistent Problems</span><span class="row-o">First author, with He (Albert) Zhang</span></span><span class="row-when">In preparation</span></button></li>
+          <li><button type="button" class="card row-log mc-item" data-node="o-ncle"><span class="row-main"><span class="row-t">obrien-lab-psu/NCLEdetector #1</span><span class="row-o">Hungarian-algorithm crossing matching and a divide-by-zero guard</span></span><span class="row-when">Merged</span></button></li>
+          <li><button type="button" class="card row-log mc-item" data-node="o-patlas"><span class="row-main"><span class="row-t">NCEMS/PerturbationAtlas #1</span><span class="row-o">Fixes found while processing a 24-dataset training set</span></span><span class="row-when">In review</span></button></li>
+        </ol>
+      </template>
+      <template id="mc-tpl-proj">
+        <div class="list">
+          <article class="card proj mc-item" data-node="p-gemma"><span class="thumb thumb-lg thumb-img img-gemma" aria-hidden="true"></span><div class="proj-body"><h3 class="proj-t"><button type="button" class="mc-open">Gemma 4 coding agent</button></h3><p class="proj-d">An autonomous agent that reads a repository and a GitHub issue, writes a fix and tests it in Docker. Built on Gemma 4 31B served with vLLM.</p><p class="proj-note">Code goes public after the competition closes.</p></div></article>
+          <article class="card proj mc-item" data-node="p-ferrite"><span class="thumb thumb-lg thumb-img img-ferrite" aria-hidden="true"></span><div class="proj-body"><h3 class="proj-t"><button type="button" class="mc-open">Ferrite</button></h3><p class="proj-d">A Redis-compatible in-memory database in 6,500 lines of C++20, with 128 commands, up to 1.83 times Redis throughput and 3.7 times lower p99 latency on large reads.</p></div></article>
+          <article class="card proj mc-item" data-node="p-ncle"><span class="thumb thumb-lg thumb-img img-ncle" aria-hidden="true"></span><div class="proj-body"><h3 class="proj-t"><button type="button" class="mc-open">Coarse-grained protein simulations</button></h3><p class="proj-d">Coarse-grained molecular dynamics simulations of how proteins refold, on matched protein sets built from AlphaFold structures.</p><p class="proj-note">NCEMS rapid-fire project</p></div></article>
+          <article class="card proj mc-item" data-node="p-cell"><span class="thumb thumb-lg thumb-still" aria-hidden="true"></span><div class="proj-body"><h3 class="proj-t"><button type="button" class="mc-open">The robot cell</button></h3><p class="proj-d">A Franka Emika Panda in a physics-simulated work cell, with seven-joint inverse kinematics, torque-limited motors and a planner that stacks boxes.</p><p class="btns"><button type="button" class="btn-sm" data-open-robot><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>Live demo</button></p></div></article>
+          <article class="card proj mc-item" data-node="p-social"><span class="thumb thumb-lg thumb-img img-social" aria-hidden="true"></span><div class="proj-body"><h3 class="proj-t"><button type="button" class="mc-open">Snapgram</button></h3><p class="proj-d">A full-stack social media app in React and TypeScript, with Appwrite for accounts, posts and photo storage.</p></div></article>
+          <article class="card proj mc-item" data-node="p-iphone"><span class="thumb thumb-lg thumb-img img-iphone" aria-hidden="true"></span><div class="proj-body"><h3 class="proj-t"><button type="button" class="mc-open">iPhone website replica</button></h3><p class="proj-d">My first frontend project, built before AI coding tools. A replica of Apple&rsquo;s iPhone 15 Pro page, with a 3D model of the phone in three.js.</p><p class="btns"><a class="btn-sm" href="https://merry-biscochitos-b3dcb8.netlify.app/" target="_blank" rel="noopener noreferrer">Live site <span aria-hidden="true">↗</span></a></p></div></article>
+          <article class="card proj mc-item" data-node="p-robot"><span class="thumb thumb-lg"><canvas data-viz="deskbot" aria-hidden="true"></canvas></span><div class="proj-body"><h3 class="proj-t"><button type="button" class="mc-open">Desk robot</button></h3><p class="proj-d">An ESP32-S3 desk companion I soldered and wired myself, with a display face, IMU reactions and pan-and-tilt servos.</p></div></article>
+        </div>
+        <h3 class="mc-sub">Smaller projects</h3>
+        <ul class="mc-tiles mc-tiles-2">
+          <li><button type="button" class="card tile mc-item" data-node="p-pride"><span class="tile-t">PRIDE control-sample finder</span><span class="tile-d">Screens about 10,000 PRIDE proteomics projects and recommends cell-line control datasets.</span><span class="tile-s">NCEMS tool, July 2026</span></button></li>
+          <li><button type="button" class="card tile mc-item" data-node="p-local"><span class="tile-t">Local AI tools</span><span class="tile-d">On-device transcription and notes for lectures and videos, and LoRA fine-tuning of Qwen2.5 with MLX.</span><span class="tile-s">Apple Silicon</span></button></li>
+        </ul>
+      </template>
+      <template id="mc-tpl-comp">
+        <ul class="mc-tiles mc-tiles-3">
+          <li><button type="button" class="card tile mc-item" data-node="p-gemma"><span class="tile-t">Gemma 4 Developer Agent</span><span class="tile-d">Gemma 4 31B fine-tuned with QLoRA and reinforcement learning, scored in a Docker test harness.</span><span class="tile-s">Kaggle, final submission Dec 2</span></button></li>
+          <li><button type="button" class="card tile mc-item" data-node="c-namellm"><span class="tile-t">Name That LLM</span><span class="tile-d">A linear probe on language-model embeddings, blended with TF-IDF and writing-style features.</span><span class="tile-s">Kaggle, running to Jan 2027</span></button></li>
+          <li><button type="button" class="card tile mc-item" data-node="c-squares"><span class="tile-t">Squares in Squares</span><span class="tile-d">Best-known packings and parametric constructions, tightened by an inflation optimizer.</span><span class="tile-s">Kaggle, running</span></button></li>
+          <li><button type="button" class="card tile mc-item" data-node="c-nfl"><span class="tile-t">NFL Big Data Bowl 2027</span><span class="tile-d">Pre-registered tests of what Combine tracking data says about NFL play.</span><span class="tile-s">Kaggle, writeup due Jan 6</span></button></li>
+          <li><button type="button" class="card tile mc-item" data-node="c-biohub"><span class="tile-t">Biohub Cell Tracking</span><span class="tile-d">Traced the lost score to linking cells between frames and raised it from 0.861 to 0.882.</span><span class="tile-s">Kaggle, Summer 2026</span></button></li>
+        </ul>
+      </template>
+      <template id="mc-tpl-edu">
+        <div class="list">
+          <button type="button" class="card row-exp mc-item" data-node="e-psu"><span class="mark logo logo-psu" aria-hidden="true"></span><span class="row-main"><span class="row-t">B.S. in Computer Science and Mathematics</span><span class="row-o">The Pennsylvania State University. GPA 3.91, Dean&rsquo;s List.</span><span class="row-l">State College, PA</span></span><span class="row-when">August 2024 – May 2028</span></button>
+        </div>
+      </template>
+      <template id="mc-tpl-cert">
+        <ol class="list">
+          <li><button type="button" class="card row-exp mc-item" data-node="k-mcp"><span class="mark logo logo-anthropic" aria-hidden="true"></span><span class="row-main"><span class="row-t">Introduction to Model Context Protocol</span><span class="row-o">Anthropic</span></span><span class="row-when">May 2026</span></button></li>
+          <li><button type="button" class="card row-exp mc-item" data-node="k-fluency"><span class="mark logo logo-anthropic" aria-hidden="true"></span><span class="row-main"><span class="row-t">AI Fluency: Framework and Foundations</span><span class="row-o">Anthropic</span></span><span class="row-when">May 2026</span></button></li>
+          <li><button type="button" class="card row-exp mc-item" data-node="k-nittany"><span class="mark logo logo-canvas" aria-hidden="true"></span><span class="row-main"><span class="row-t">Nittany AI Machine Learning Bootcamp 2024</span><span class="row-o">Canvas Credentials (Badgr)</span></span><span class="row-when">January 2025</span></button></li>
+        </ol>
+      </template>
+    </section>
+
+    <div class="intro">
+      <p>Computer Science and Mathematics at Penn State, graduating May 2028.</p>
+      <p>I build machine learning systems and the tools that check them, and I do research in three labs.</p>
+    </div>
+
+    <section class="protein" id="protein" aria-labelledby="pr-h">
+      <h2 class="sr-only" id="pr-h">Coarse-grained simulation of a protein</h2>
+      <div class="pr-frame">
+        <div class="pr-bar">
+          <div class="pr-menu" role="radiogroup" aria-label="Protein"></div>
+          <p class="pr-state" aria-hidden="true"><span class="pr-state-t">Folded</span><span class="pr-state-d">As AlphaFold predicted it</span></p>
+        </div>
+        <div class="pr-box">
+          <div class="pr-stage" tabindex="0" aria-describedby="pr-help">
+            <canvas role="img" aria-label="Thioredoxin 1 drawn as ribbons, coloured blue where its native structure holds and orange where it has come apart."></canvas>
+            <span class="pr-term pr-term-n" aria-hidden="true" hidden>N</span>
+            <span class="pr-term pr-term-c" aria-hidden="true" hidden>C</span>
+            <p class="pr-tip" aria-hidden="true" hidden></p>
+            <div class="pr-legend" aria-hidden="true">
+              <span><i style="background:#0053d6"></i>In place</span><span><i style="background:#65cbf3"></i>Mostly</span><span><i style="background:#ffdb13"></i>Loosening</span><span><i style="background:#ff7d45"></i>Unfolded</span>
+            </div>
+          </div>
+          <div class="pr-controls">
+            <button type="button" class="ap-toggle pr-heat" id="pr-heat" role="switch" aria-checked="false">
+              <span class="ap-label">Heat</span>
+              <span class="ap-track" aria-hidden="true"><span class="ap-knob"></span></span>
+              <span class="ap-state" aria-hidden="true">Off</span>
+            </button>
+            <button type="button" class="pr-reset" id="pr-reset">Reset</button>
+          </div>
+        </div>
+        <div class="pr-foot">
+          <p class="pr-title" aria-hidden="true">Coarse-grained simulation</p>
+          <p class="pr-caption" id="pr-cap">AlphaFold&rsquo;s model of thioredoxin 1 from <i>E. coli</i>, whose N-terminal strand threads one of its own loops.</p>
+          <p class="pr-credit" id="pr-credit">Simulated from AlphaFold DB model <a href="https://alphafold.ebi.ac.uk/entry/P0AA25" target="_blank" rel="noopener noreferrer">AF-P0AA25-F1</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.</p>
+        </div>
+      </div>
+      <p class="sr-only" id="pr-said" role="status"></p>
+      <p class="sr-only" id="pr-help">The menu above the protein switches between four proteins. With the protein focused, the arrow keys turn it. The Heat switch melts it and turning it off lets it fold back. Colours follow AlphaFold&rsquo;s confidence scale and show how much of each part&rsquo;s native structure is in place.</p>
+    </section>
+
+    <section class="sec why" aria-labelledby="why-h">
+      <h2 id="why-h">Why I built it</h2>
+      <p class="why-t">At NCEMS I map entanglements, where a protein&rsquo;s chain threads one of its own loops, across 555,846 AlphaFold structures. That work got me into protein misfolding. A folding chain can thread the wrong loop and get stuck, because escaping means partly unfolding first. Nothing here is scripted. Melt a protein, let it cool, and it finds its own way back, or gets stuck the same way.</p>
+    </section>
+
+    <section class="sec" aria-labelledby="connect-h">
+      <h2 id="connect-h">Connect</h2>
+      <p class="connect-t">I'm looking for Summer 2027 internships in software engineering and machine learning, available May 17 to August 21.</p>
+      <p class="socials"><a class="social social-gh" href="https://github.com/TarunKumar3103" target="_blank" rel="noopener noreferrer"><span class="social-logo" aria-hidden="true"></span><span class="sr-only">GitHub</span></a><a class="social social-li" href="https://www.linkedin.com/in/tarun-kumar-b8274230a/" target="_blank" rel="noopener noreferrer"><span class="social-logo" aria-hidden="true"></span><span class="sr-only">LinkedIn</span></a><a class="social social-cv" href="https://drive.google.com/file/d/1Rt1joG4-UaYsHWgOiLSGYVh0AZm84njM/view" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>Resume</a></p>
+    </section>
+  </div>
+</div>
+
+<!-- ======================================================== resume -->
+<div class="page" data-page="resume" hidden>
+  <div class="wrap">
+    <div class="page-head">
+      <h1 tabindex="-1">Resume</h1>
+    </div>
+    <p class="btns cv-btns"><a class="btn-sm" href="https://drive.google.com/file/d/1Rt1joG4-UaYsHWgOiLSGYVh0AZm84njM/view" target="_blank" rel="noopener noreferrer">Open the PDF <span aria-hidden="true">↗</span></a></p>
+    <figure class="cv-sheet"><img src="{{RESUME_IMG}}" width="612" height="792" alt="Tarun Kumar's resume. Open the PDF above for a version you can search and copy from." decoding="async"></figure>
+  </div>
+</div>
+
+<!-- ======================================================== research -->
+<div class="page" data-page="research" hidden>
+  <div class="wrap">
+    <div class="page-head">
+      <h1 tabindex="-1">Research</h1>
+      <p>Three labs at Penn State, working on protein structure, LLM reasoning and tools for researchers.</p>
+    </div>
+
+    <article class="entry" id="r-nofreecheck">
+      <div class="entry-viz viz-html">
+        <div class="fact" aria-label="Attack success by evidence available">
+          <span></span><span class="ax ax-top">Not re-derivable</span><span class="ax ax-top">Re-derivable</span>
+          <span class="ax">No record</span>
+          <span class="c c1"><b>0.997</b><span>attack success</span></span>
+          <span class="c c2"><b>0.627</b><span>attack success</span></span>
+          <span class="ax">Trusted record</span>
+          <span class="c c3"><b>0.327</b><span>attack success</span></span>
+          <span class="c c4"><b>0.010</b><span>attack success</span></span>
+        </div>
+        <p class="viz-cap">How often one planted value takes over the answer, by the evidence in context (main model, 600 items per cell).</p>
+      </div>
+      <div class="entry-body">
+        <h2>No Free Check: Redundancy Determines What LLM Reasoning Can Verify</h2>
+        <p class="entry-org">Collaboration and Innovation Lab, with He (Albert) Zhang. <span class="tag tag-live">Under review</span></p>
+        <p class="entry-lede">When can a language model catch a single corrupted value in its own reasoning? The paper studies how the evidence in a model&rsquo;s context decides what it can check.</p>
+        <ul>
+          <li>I worked on the research, the literature review and the writing, and did the paper's blind human annotation of variable-binding violations.</li>
+        </ul>
+        <ol class="track" aria-label="Progress"><li class="done">Experiments</li><li class="done">Writing</li><li class="now">Under review</li><li>Decision</li></ol>
+      </div>
+    </article>
+
+    <article class="entry" id="r-crossmodal">
+      <figure class="entry-fig">
+        <button type="button" class="fig-img fig-semi" style="--ar: 1636 / 560" aria-label="Enlarge the figure of SEMI's training and inference"></button>
+        <figcaption>SEMI, the method I reproduced: a hypernetwork trained on images, audio and video adapts a projector to modalities it has never seen. Figure from <a href="https://arxiv.org/abs/2509.04606" target="_blank" rel="noopener noreferrer">&#304;nce et al., 2025</a>.</figcaption>
+      </figure>
+      <div class="entry-body">
+        <h2>Extending LLMs to new modalities</h2>
+        <p class="entry-org">AI4Research Lab, with Prof. Wenpeng Yin. January 2026 to now.</p>
+        <p class="entry-lede">Reproducing and evaluating methods that connect new kinds of data, like LiDAR, radar and 3D CT, to large language models.</p>
+        <ul>
+          <li>Reproduced SEMI with 1B and 8B models, rebuilding the 8B training pipeline to reach 217.4 CIDEr on image captioning.</li>
+          <li>Built a Python evaluation pipeline that turns image, LiDAR, radar and 3D CT data into model inputs and serves Qwen3-VL 8B and 32B with vLLM on multi-GPU A100 nodes, benchmarking three models on 31,000+ inference requests.</li>
+          <li>Converted pretrained encoders from PaddlePaddle to PyTorch and rebuilt a 3D object-detection network on spconv 2.x, checking each against the original.</li>
+        </ul>
+        <ol class="track" aria-label="Progress"><li class="done">Reproduction</li><li class="done">Pipeline</li><li class="now">Experiments</li><li>Paper</li></ol>
+      </div>
+    </article>
+
+    <article class="entry" id="r-entanglement">
+      <figure class="entry-fig">
+        <button type="button" class="fig-img fig-tim" style="--ar: 4 / 3" aria-label="Enlarge AlphaFold's model of triosephosphate isomerase"></button>
+        <figcaption>AlphaFold&rsquo;s model of triosephosphate isomerase from <i>E. coli</i>, coloured by AlphaFold&rsquo;s confidence. <span class="credit">Rendered from AlphaFold DB model <a href="https://alphafold.ebi.ac.uk/entry/P0A858" target="_blank" rel="noopener noreferrer">AF-P0A858-F1</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.</span></figcaption>
+      </figure>
+      <div class="entry-body">
+        <h2>Proteome-scale protein entanglement</h2>
+        <p class="entry-org">NSF National Synthesis Center (NCEMS), O'Brien Lab. March 2026 to now.</p>
+        <p class="entry-lede">I run the lab's entanglement detection across every organism in the AlphaFold reference set and build the database our structural analyses use.</p>
+        <ul>
+          <li>Processed 555,846 AlphaFold structures from 46 proteomes on Penn State's Roar Collab cluster with zero failed jobs, checking every organism against reference counts.</li>
+          <li>Replaced an O(n!) crossing-matching step with the O(n³) Hungarian algorithm in the lab's open-source tool.</li>
+          <li>Found and proved two bugs that silently corrupted feature outputs, then wrote a runner that regenerates the features without re-running detection.</li>
+          <li>Now also running coarse-grained refolding simulations for a related NCEMS project.</li>
+        </ul>
+        <ol class="track" aria-label="Progress"><li class="done">Data</li><li class="done">Pipeline</li><li class="now">Analysis</li><li>Paper</li></ol>
+        <p class="btns"><a class="btn-sm" href="https://github.com/obrien-lab-psu/NCLEdetector/pull/1" target="_blank" rel="noopener noreferrer">Merged pull request <span aria-hidden="true">↗</span></a></p>
+      </div>
+    </article>
+
+    <article class="entry" id="r-cvae">
+      <figure class="entry-fig">
+        <button type="button" class="fig-img fig-vae" style="--ar: 1287 / 592" aria-label="Enlarge the diagram of a variational autoencoder"></button>
+        <figcaption>A variational autoencoder: the encoder maps each sample to a distribution in latent space, and the decoder rebuilds the sample from a draw of it.</figcaption>
+      </figure>
+      <div class="entry-body">
+        <h2>Batch-effect correction for proteomics</h2>
+        <p class="entry-org">NCEMS, with Ian Sitarik. 2026 to now.</p>
+        <p class="entry-lede">ProteomicsCVAE is an adversarial autoencoder that removes dataset batch effects from mass-spec proteomics while keeping each sample's biology.</p>
+        <ul>
+          <li>Built in PyTorch on 255 samples and 1,605 proteins from eight public PRIDE datasets, with about 66% of values missing.</li>
+          <li>Tuned with multi-objective Optuna search (NSGA-II) and benchmarked against ComBat and regression baselines on held-out data.</li>
+          <li>Engineered pandas and NumPy pipelines over 10M+ mass-spectrometry records, cutting preprocessing per run from about 2 hours to about 20 minutes.</li>
+          <li>Reprocessed public datasets through the lab's PerturbationAtlas pipeline on HPC and cloud machines, and sent the fixes upstream.</li>
+        </ul>
+        <ol class="track" aria-label="Progress"><li class="done">Model</li><li class="done">Benchmarks</li><li class="now">Paper</li><li>Submission</li></ol>
+      </div>
+    </article>
+
+    <article class="entry" id="r-litrag">
+      <figure class="entry-fig">
+        <button type="button" class="fig-img fig-litrag" style="--ar: 1246 / 782" aria-label="Enlarge the screenshot of LitRAG's comparative review"></button>
+        <figcaption>LitRAG&rsquo;s comparative review: papers grouped by theme, linked by how closely they relate, with a cited synthesis of each group.</figcaption>
+      </figure>
+      <div class="entry-body">
+        <h2>LitRAG and a review of generative-AI tools in HCI</h2>
+        <p class="entry-org">Collaboration and Innovation Lab, with He (Albert) Zhang. First author. October 2025 to now.</p>
+        <p class="entry-lede">LitRAG is a multimodal retrieval system for reading and synthesizing research literature, and the method behind a systematic review of 80 papers.</p>
+        <ul>
+          <li>Built on ChromaDB with dense retrieval and cross-encoder reranking over text, figures and audio from the talks.</li>
+          <li>Rewrites or removes any generated claim its cited source doesn't support before a reader sees it.</li>
+          <li>Extracts structured profiles of papers into a fixed schema so they can be compared against hand-coded labels.</li>
+          <li>The review, Convergent Design Responses, Persistent Problems, is being prepared for Augmented Humans 2027, with an expanded version planned for DIS 2027.</li>
+        </ul>
+        <ol class="track" aria-label="Progress"><li class="done">System</li><li class="done">Review</li><li class="now">Revision</li><li>Submission</li></ol>
+      </div>
+    </article>
+
+    <section class="sec" id="publications" aria-labelledby="pubs-h">
+      <div class="sec-head"><h2 id="pubs-h">Papers and open source</h2></div>
+      <ol class="list">
+        <li class="card row-log"><span class="row-main"><span class="row-t">No Free Check: Redundancy Determines What LLM Reasoning Can Verify</span><span class="row-o">With He (Albert) Zhang</span></span><span class="row-when">Under review</span></li>
+        <li class="card row-log" id="o-convergent"><span class="row-main"><span class="row-t">Convergent Design Responses, Persistent Problems</span><span class="row-o">A systematic review of 80 generative-AI systems papers in HCI, using LitRAG. First author, with He (Albert) Zhang. For Augmented Humans 2027.</span></span><span class="row-when">In preparation</span></li>
+        <li class="card row-log"><span class="row-main"><span class="row-t">Two first-author papers in progress</span><span class="row-o">One on my AI4Research Lab work, and one on proteomics batch correction at NCEMS with Ian Sitarik.</span></span><span class="row-when">Writing</span></li>
+        <li id="o-ncle"><a class="card row-log" href="https://github.com/obrien-lab-psu/NCLEdetector/pull/1" target="_blank" rel="noopener noreferrer"><span class="row-main"><span class="row-t">obrien-lab-psu/NCLEdetector #1</span><span class="row-o">Hungarian-algorithm crossing matching, a cutoff for new organisms and a divide-by-zero guard</span></span><span class="row-when">Merged</span></a></li>
+        <li class="card row-log" id="o-patlas"><span class="row-main"><span class="row-t">NCEMS/PerturbationAtlas #1</span><span class="row-o">Fixes for problems found while processing a 24-dataset training set</span></span><span class="row-when">In review</span></li>
+      </ol>
+    </section>
+  </div>
+</div>
+
+<!-- ======================================================== projects -->
+<div class="page" data-page="projects" hidden>
+  <div class="wrap">
+    <div class="page-head">
+      <h1 tabindex="-1">Projects</h1>
+      <p>Things I build, from a coding agent and a database to web apps, hardware and a research pipeline.</p>
+    </div>
+
+    <article class="entry" id="p-gemma">
+      <div class="entry-viz entry-img img-gemma" role="img" aria-label="The banner of Google&rsquo;s Gemma 4 Developer Agent Competition."></div>
+      <div class="entry-body">
+        <h2>Gemma 4 coding agent</h2>
+        <p class="entry-org">Google's Gemma 4 Developer Agent Competition on Kaggle. Final submission December 2026.</p>
+        <ul>
+          <li>An autonomous agent that reads a repository and an issue, writes a fix and tests it. Every patch runs in a Docker sandbox, and a fix only counts if the tests pass with it and fail without it.</li>
+          <li>My evaluation harness caught three grading bugs, and a validation set from unseen repositories predicted the held-out score within one task.</li>
+          <li>Built an end-to-end QLoRA fine-tuning pipeline for the 31B model on a single 40 GB A100 with 16k-token sequences, and deployed the adapters on the competition's inference server. Fine-tuning with QLoRA and reinforcement learning raised tasks solved by 12%.</li>
+        </ul>
+        <p class="tags"><span class="tag">Python</span><span class="tag">vLLM</span><span class="tag">Docker</span><span class="tag">QLoRA</span><span class="tag">RL</span><span class="tag">SLURM</span></p>
+        <p class="entry-note">Code goes public after the competition closes.</p>
+      </div>
+    </article>
+
+    <article class="entry" id="p-ferrite">
+      <div class="entry-viz entry-img img-ferrite" role="img" aria-label="A ferrite toroid core with a copper winding, the material Ferrite is named after."></div>
+      <div class="entry-body">
+        <h2>Ferrite</h2>
+        <p class="entry-org">A Redis-compatible in-memory database in C++20.</p>
+        <ul>
+          <li>6,500 lines of dependency-free C++20, with thread-per-core epoll workers over a 256-shard keyspace, Robin Hood hashing, skip-list sorted sets, snapshots and 128 Redis commands. Ordered locking keeps multi-key transactions atomic and deadlock-free.</li>
+          <li>Benchmarked against Redis 7.0 on one core each, it matches Redis without pipelining and reaches 1.31 times its throughput at depth 16, 1.83 times on GET at depth 256 and 3.7 times lower p99 latency on large reads, by answering each batch with one write.</li>
+          <li>Checked reply-for-reply against real Redis on 6,000 random commands, and clean under AddressSanitizer, UndefinedBehaviorSanitizer and ThreadSanitizer.</li>
+          <li>With a client that never reads its replies, memory stayed at 71 MiB while Redis grew to 416 MiB.</li>
+        </ul>
+        <p class="tags"><span class="tag">C++20</span><span class="tag">Linux</span><span class="tag">epoll</span><span class="tag">Concurrency</span><span class="tag">Benchmarking</span></p>
+      </div>
+    </article>
+
+    <article class="entry" id="p-ncle">
+      <figure class="entry-fig">
+        <div class="entry-viz entry-img img-ncle" role="img" aria-label="AlphaFold&rsquo;s model of maltose-binding protein in grey, with a loop in purple and, in orange, the stretch of chain that threads through it."></div>
+        <figcaption>One of the entanglements in AlphaFold&rsquo;s model of <i>E. coli</i> maltose-binding protein. The chain after the purple loop (residues 90 to 122) threads back through it, in orange. <span class="credit">Rendered from AlphaFold DB model <a href="https://alphafold.ebi.ac.uk/entry/P0AEX9" target="_blank" rel="noopener noreferrer">AF-P0AEX9-F1</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.</span></figcaption>
+      </figure>
+      <div class="entry-body">
+        <h2>Coarse-grained protein simulations</h2>
+        <p class="entry-org">NSF National Synthesis Center (NCEMS), rapid-fire project. September 2026 to now.</p>
+        <p class="entry-lede">Simulating how proteins refold, and where they can misfold, with coarse-grained molecular dynamics.</p>
+        <ul>
+          <li>Building protein sets from AlphaFold DB structures, matched in pairs on length, writhe and contact order.</li>
+          <li>Running coarse-grained molecular dynamics simulations of how those proteins refold.</li>
+        </ul>
+        <p class="tags"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">AlphaFold</span><span class="tag">Coarse-grained MD</span></p>
+      </div>
+    </article>
+
+    <article class="entry" id="p-cell">
+      <div class="entry-viz thumb-still" role="img" aria-label="Still of the robot cell: the white Panda arm reaching for a box beside a half-built tower."></div>
+      <div class="entry-body">
+        <h2>The robot cell</h2>
+        <p class="entry-org">Written for this site.</p>
+        <ul>
+          <li>A Franka Emika Panda using the meshes, link frames, masses and inertias from Google DeepMind's <a href="https://github.com/google-deepmind/mujoco_menagerie" target="_blank" rel="noopener noreferrer">MuJoCo Menagerie</a> (<a href="https://github.com/google-deepmind/mujoco_menagerie/blob/main/franka_emika_panda/LICENSE" target="_blank" rel="noopener noreferrer">Apache 2.0</a>).</li>
+          <li>Inverse kinematics for seven joints, motors held to the Panda's torque and speed limits, and gravity compensation from the arm's real masses.</li>
+          <li>A planner that stacks and unstacks boxes, checks the hand fits before each pick and lowers boxes with guarded moves that stop on contact.</li>
+        </ul>
+        <p class="tags"><span class="tag">three.js</span><span class="tag">cannon-es</span><span class="tag">robotics</span></p>
+        <p class="btns"><button type="button" class="btn-sm" data-open-robot><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>Live demo</button></p>
+      </div>
+    </article>
+
+    <article class="entry" id="p-social">
+      <div class="entry-viz entry-img img-social" role="img" aria-label="Snapgram&rsquo;s Create Post page: a sidebar with Home, Explore, People, Saved and Create Post, and a form with a caption box and a place to drop photos."></div>
+      <div class="entry-body">
+        <h2>Snapgram</h2>
+        <p class="entry-org">A full-stack social media app.</p>
+        <ul>
+          <li>Sign-up and sign-in, posts with photo uploads that can be edited and deleted, likes and saves, a home feed, and an Explore page with search.</li>
+          <li>Appwrite for accounts, the database and photo storage, with TanStack Query caching each request and refreshing the right ones after every change.</li>
+          <li>Search waits for typing to pause, and the Explore grid loads more posts as you scroll. Forms are validated with React Hook Form and Zod.</li>
+        </ul>
+        <p class="tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Appwrite</span><span class="tag">TanStack Query</span><span class="tag">Tailwind CSS</span></p>
+        <p class="btns"><a class="btn-sm" href="https://github.com/TarunKumar3103/Social-Media-Application" target="_blank" rel="noopener noreferrer">Code on GitHub <span aria-hidden="true">↗</span></a></p>
+      </div>
+    </article>
+
+    <article class="entry" id="p-iphone">
+      <div class="entry-viz entry-img img-iphone" role="img" aria-label="The replica&rsquo;s 3D model of the iPhone 15 Pro in natural titanium, with its colour and size picker."></div>
+      <div class="entry-body">
+        <h2>iPhone website replica</h2>
+        <p class="entry-org">My first frontend project, built before AI coding tools.</p>
+        <p class="entry-lede">A replica of Apple&rsquo;s iPhone 15 Pro page. I learned React and three.js from scratch to build its details and visual effects.</p>
+        <ul>
+          <li>A 3D model of the phone in three.js, through React Three Fiber, that you can turn and switch between finishes and between the two sizes.</li>
+          <li>Scroll-driven animations with GSAP, and a video carousel that tracks each clip&rsquo;s progress.</li>
+        </ul>
+        <p class="tags"><span class="tag">React</span><span class="tag">three.js</span><span class="tag">GSAP</span><span class="tag">Tailwind CSS</span><span class="tag">Vite</span></p>
+        <p class="btns"><a class="btn-sm" href="https://merry-biscochitos-b3dcb8.netlify.app/" target="_blank" rel="noopener noreferrer">Live site <span aria-hidden="true">↗</span></a><a class="btn-sm" href="https://github.com/TarunKumar3103/iPhone" target="_blank" rel="noopener noreferrer">Code on GitHub <span aria-hidden="true">↗</span></a></p>
+      </div>
+    </article>
+
+    <article class="entry" id="p-robot">
+      <div class="entry-viz"><canvas data-viz="deskbot" role="img" aria-label="Illustration of a small desk robot with a square face, LED eyes and a pan-and-tilt neck."></canvas></div>
+      <div class="entry-body">
+        <h2>Desk robot</h2>
+        <p class="entry-org">Hardware project. In progress.</p>
+        <p class="entry-lede">An ESP32-S3 desk companion I soldered and wired myself, with a square display face, IMU reactions, pan-and-tilt servos and a torch. Next is a more capable, non-animal body with LED eyes, and a Jetson for vision later.</p>
+        <p class="tags"><span class="tag">ESP32-S3</span><span class="tag">Arduino</span><span class="tag">IMU</span><span class="tag">Servos</span><span class="tag">3D printing</span></p>
+      </div>
+    </article>
+
+    <section class="sec" id="smaller" aria-labelledby="small-h">
+      <div class="sec-head"><h2 id="small-h">Smaller projects</h2></div>
+      <div class="grid2">
+        <article class="card tile" id="p-pride">
+          <span class="tile-t">PRIDE control-sample finder</span>
+          <span class="tile-s">NCEMS tool, July 2026. Screens about 10,000 PRIDE proteomics projects with GPT-4o-mini annotation and quality scoring, then recommends cell-line control datasets through a Gradio interface.</span>
+        </article>
+        <article class="card tile" id="p-local">
+          <span class="tile-t">Local AI tools</span>
+          <span class="tile-s">An on-device pipeline that transcribes and summarizes lectures and videos for cross-video synthesis, and LoRA fine-tuning of Qwen2.5 with MLX on Apple Silicon.</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="sec" id="competitions" aria-labelledby="comp-h">
+      <div class="sec-head"><h2 id="comp-h">Competitions</h2></div>
+      <ol class="list">
+        <li class="card comp" id="c-gemma">
+          <div class="comp-head"><h3 class="comp-t">Gemma 4 Developer Agent <span class="comp-host">Kaggle</span></h3><span class="comp-when">Final submission Dec 2</span></div>
+          <p class="comp-task">Post-train and scaffold an open model into an agent that resolves real GitHub issues.</p>
+          <ul>
+            <li>Built the agent on Gemma 4 31B served with vLLM, then an evaluation harness that runs every patch in a Docker sandbox and counts a fix only if the tests pass with it and fail without it.</li>
+            <li>Fine-tuned with QLoRA on a single 40 GB A100 and then with reinforcement learning on the model's own runs, which raised tasks solved by 12%.</li>
+          </ul>
+          <p class="comp-more"><a href="#p-gemma">Full write-up <span aria-hidden="true">→</span></a></p>
+        </li>
+        <li class="card comp" id="c-namellm">
+          <div class="comp-head"><h3 class="comp-t">Name That LLM <span class="comp-host">Kaggle</span></h3><span class="comp-when">Running to Jan 2027</span></div>
+          <p class="comp-task">Work out which of 18 language models wrote a passage.</p>
+          <ul>
+            <li>Set up cross-validation grouped by prompt first, so a model is never scored on a prompt it has already seen, and a word and character TF-IDF classifier as the baseline to beat.</li>
+            <li>Tried grouping passages by prompt and assigning labels across the group as a matching problem. It helped in cross-validation but not on the leaderboard, so I dropped it.</li>
+            <li>The approach I kept reads mid-layer embeddings out of a frozen open base model and fits a linear classifier on them, blended with the TF-IDF and writing-style features at weights fitted out of fold.</li>
+            <li>Chose the layer and the model size by probing both on my own machine, and used a learning curve to see how much more labelled data would be worth.</li>
+          </ul>
+          <p class="comp-note">Method only while the competition is open.</p>
+        </li>
+        <li class="card comp" id="c-squares">
+          <div class="comp-head"><h3 class="comp-t">Squares in Squares <span class="comp-host">Kaggle</span></h3><span class="comp-when">Running</span></div>
+          <p class="comp-task">Pack n unit squares, free to rotate, into the smallest containing square, for every n up to 1,000.</p>
+          <ul>
+            <li>Started with a local scorer: an exact overlap test for rotated squares, plus a safety margin, so a layout is only submitted once it is provably legal.</li>
+            <li>Small n is a lookup problem, so the plan is to seed from the published best-known packings and check each one against the border and monotonicity rules.</li>
+            <li>Large n is a construction problem, so parameterized strip and tilted-band layouts generate a starting point, which an inflation optimizer and an evolutionary search then tighten.</li>
+            <li>The plain grid packing is the baseline each n has to beat.</li>
+          </ul>
+          <p class="comp-note">Method only while the competition is open.</p>
+        </li>
+        <li class="card comp" id="c-nfl">
+          <div class="comp-head"><h3 class="comp-t">NFL Big Data Bowl 2027 <span class="comp-host">Kaggle</span></h3><span class="comp-when">Writeup due Jan 6</span></div>
+          <p class="comp-task">An open analytics question on the new Combine tracking data, judged as a written report.</p>
+          <ul>
+            <li>Framed it as whether Combine tracking measures carry information about NFL play, and started with offensive line pass protection, where the on-field measure is cleanest.</li>
+            <li>Audited the data first and measured how repeatable each NFL metric is across a split half of the season, so an effect is only pursued where the measure is stable enough to find one.</li>
+            <li>Registered each hypothesis with its test and its failure rule before running it, and dropped the first one when it failed its own rule.</li>
+            <li>Validated the pipeline on synthetic seasons with known effects planted in them, and controlled the false discovery rate across the tests. Written in Polars with bootstrap intervals throughout.</li>
+          </ul>
+          <p class="comp-note">Findings stay in the report until it is submitted.</p>
+        </li>
+        <li class="card comp" id="c-biohub">
+          <div class="comp-head"><h3 class="comp-t">Biohub Cell Tracking <span class="comp-host">Kaggle</span></h3><span class="comp-when">Summer 2026</span></div>
+          <p class="comp-task">Follow dividing cells through microscopy video, scored on both the links between frames and the divisions.</p>
+          <ul>
+            <li>Built a local validation harness around the competition's own scorer, so every change could be measured before it cost a submission.</li>
+            <li>Split the score by error type, which showed finding the cells was already solved at 0.99 recall and all the remaining loss sat in linking them between frames. That moved the work off detection entirely.</li>
+            <li>Swept the minimum track length and calibrated the gap between my local score and the leaderboard, which took the leaderboard score from 0.861 to 0.882.</li>
+            <li>Identified the smoothing step that the top public solutions shared, by fitting a line through each cell's neighbouring frames, as the next thing to add.</li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+  </div>
+</div>
+
+<!-- ======================================================== experience -->
+<div class="page" data-page="experience" hidden>
+  <div class="wrap">
+    <div class="page-head">
+      <h1 tabindex="-1">Experience</h1>
+      <p>Research in Penn State labs, internships at ADNOC Gas and the Nittany AI Alliance, two student clubs, and the tools I work with.</p>
+    </div>
+
+    <ol class="list" id="positions">
+      <li class="card row-exp row-full" id="x-ncems">
+        <span class="mark logo logo-ncems" aria-hidden="true"></span>
+        <div class="row-main"><p class="row-t">Research Intern, Machine Learning and Bioinformatics</p><p class="row-o">NSF National Synthesis Center (NCEMS), O'Brien Lab</p><p class="row-l">State College, PA</p>
+          <ul>
+            <li>Scaled a protein-analysis pipeline to 555,846 structures across 46 organisms with SLURM on an HPC cluster, finishing with zero failed proteins, and added verification that caught transfers reporting success while incomplete.</li>
+            <li>Fixed four bugs in an open-source analysis tool, replacing an O(n!) clustering step with the O(n³) Hungarian algorithm, and traced a silent bug corrupting six features to a hardcoded default ID.</li>
+            <li>Engineered Python pipelines (pandas, NumPy, scikit-learn) that ingest, normalize and feature-engineer 10M+ mass-spectrometry records, cutting preprocessing per run from about 2 hours to about 20 minutes.</li>
+            <li>Built an Optuna-tuned PyTorch autoencoder that removes batch effects from multi-lab data while keeping the biological signal.</li>
+          </ul></div>
+        <p class="row-when">March 2026 – Present</p>
+      </li>
+      <li class="card row-exp row-full" id="x-ai4r">
+        <span class="mark logo logo-ai4r" aria-hidden="true"></span>
+        <div class="row-main"><p class="row-t">Undergraduate Researcher</p><p class="row-o">AI4Research Lab, with Prof. Wenpeng Yin</p><p class="row-l">State College, PA</p>
+          <ul>
+            <li>Reproduced SEMI, a few-shot method that connects frozen modality encoders to LLMs through a trained projector, with 1B and 8B models, rebuilding the 8B training pipeline to reach 217.4 CIDEr on image captioning.</li>
+            <li>Built a Python evaluation pipeline that turns image, LiDAR, radar and 3D CT data into model inputs and serves Qwen3-VL 8B and 32B on multi-GPU A100 nodes with vLLM, benchmarking three models on 31,000+ inference requests.</li>
+            <li>Converted pretrained encoder weights from PaddlePaddle to PyTorch and rebuilt a 3D object-detection network on spconv 2.x, verifying each against the original implementation.</li>
+          </ul></div>
+        <p class="row-when">January 2026 – Present</p>
+      </li>
+      <li class="card row-exp row-full" id="x-cil">
+        <span class="mark logo logo-cil" aria-hidden="true"></span>
+        <div class="row-main"><p class="row-t">Undergraduate Researcher, Multimodal RAG Systems</p><p class="row-o">Collaboration and Innovation Lab, with He (Albert) Zhang</p><p class="row-l">State College, PA</p>
+          <ul>
+            <li>Built a multimodal RAG system over 390+ papers (37,000+ text chunks, 7,000+ figures and audio) with ChromaDB, dense retrieval and cross-encoder reranking, plus a pass that drops unsupported generated claims.</li>
+            <li>First author of a RAG-assisted systematic literature review of generative-AI systems in HCI.</li>
+            <li>Co-author of No Free Check, a study of when LLM reasoning can catch its own errors, now under review.</li>
+          </ul></div>
+        <p class="row-when">October 2025 – Present</p>
+      </li>
+      <li class="card row-exp row-full" id="x-writing">
+        <span class="mark logo logo-cil" aria-hidden="true"></span>
+        <div class="row-main"><p class="row-t">Research Assistant, AI in Student Writing</p><p class="row-o">Collaboration and Innovation Lab, with Jiyoon Kim</p><p class="row-l">State College, PA</p>
+          <ul><li>Reviewed 40 papers on how students use AI in writing and was interviewed for an undergraduate perspective.</li></ul></div>
+        <p class="row-when">October 2025 – January 2026</p>
+      </li>
+      <li class="card row-exp row-full" id="x-biorob">
+        <span class="mark logo logo-biorob" aria-hidden="true"></span>
+        <div class="row-main"><p class="row-t">Research Assistant, Robotics Simulation</p><p class="row-o">BioRob-InFL Lab, with Prof. Bo Cheng</p><p class="row-l">State College, PA</p>
+          <ul><li>ROS 2 and Gazebo simulations of a drone landing in any orientation using a JeVois camera, plus simulations of other robots.</li></ul></div>
+        <p class="row-when">September 2025 – December 2025</p>
+      </li>
+      <li class="card row-exp row-full" id="x-adnoc">
+        <span class="mark logo logo-adnoc" aria-hidden="true"></span>
+        <div class="row-main"><p class="row-t">Software Development Intern</p><p class="row-o">ADNOC Gas</p><p class="row-l">Abu Dhabi, UAE</p>
+          <ul>
+            <li>Built an Azure-hosted asset-tracking platform (Next.js, FastAPI, PostgreSQL, Redis) for an engineering department of about 100 staff, handling QR registration, check-in and check-out, custody history and equipment location.</li>
+            <li>Designed Power BI dashboards and automated 10+ weekly reports, giving engineers one view of asset status, custody events and operational activity.</li>
+          </ul></div>
+        <p class="row-when">June 2025 – August 2025</p>
+      </li>
+      <li class="card row-exp row-full" id="x-nittany-adv">
+        <span class="mark logo logo-nittanyai" aria-hidden="true"></span>
+        <div class="row-main"><p class="row-t">Advanced Machine Learning Intern</p><p class="row-o">Nittany AI Alliance</p><p class="row-l">State College, PA</p>
+          <ul>
+            <li>Selected for the Nittany AI Student Society&rsquo;s Spring 2025 Advanced Machine Learning Bootcamp.</li>
+            <li>Built projects across the machine learning workflow: data preprocessing, a CNN for pneumonia detection, a retrieval-augmented LLM for stock-market analysis, and uploading a trained model to cloud services.</li>
+          </ul></div>
+        <p class="row-when">January 2025 – May 2025</p>
+      </li>
+      <li class="card row-exp row-full" id="x-nittany">
+        <span class="mark logo logo-nittanyai" aria-hidden="true"></span>
+        <div class="row-main"><p class="row-t">Machine Learning Intern</p><p class="row-o">Nittany AI Alliance</p><p class="row-l">State College, PA</p>
+          <ul>
+            <li>Selected as one of 90 interns from more than 300 applicants for the 2024 Machine Learning Internship.</li>
+            <li>Built neural networks and white-box models from scratch.</li>
+            <li>Led a team building an app for the Nittany AI Challenge.</li>
+          </ul></div>
+        <p class="row-when">August 2024 – December 2024</p>
+      </li>
+      <li class="card row-exp row-full" id="x-hrc">
+        <span class="mark logo logo-hrc" aria-hidden="true"></span>
+        <div class="row-main"><p class="row-t">Software Engineer</p><p class="row-o">Humanoid Robotics Club, Penn State</p><p class="row-l">State College, PA</p>
+          <ul><li>Wrote the C# code for the movements of the club&rsquo;s robotic arm.</li></ul></div>
+        <p class="row-when">September 2024 – December 2024</p>
+      </li>
+      <li class="card row-exp row-full" id="x-gddc">
+        <span class="mark logo logo-gddc" aria-hidden="true"></span>
+        <div class="row-main"><p class="row-t">Game Developer</p><p class="row-o">Game Design and Development Club, Penn State</p><p class="row-l">State College, PA</p>
+          <ul><li>Made several games in Unity, including Snake, 2048 and a platformer, with my own sprites and C# code.</li></ul></div>
+        <p class="row-when">September 2024 – December 2024</p>
+      </li>
+    </ol>
+
+    <section class="sec" id="education" aria-labelledby="edu-h">
+      <div class="sec-head"><h2 id="edu-h">Education</h2></div>
+      <div class="card row-exp" id="e-psu">
+        <span class="mark logo logo-psu" aria-hidden="true"></span>
+        <div class="row-main"><p class="row-t">B.S. in Computer Science and Mathematics</p><p class="row-o">The Pennsylvania State University. GPA 3.91, Dean's List.</p><p class="row-l">State College, PA</p></div>
+        <p class="row-when">August 2024 – May 2028</p>
+      </div>
+    </section>
+
+    <section class="sec" id="certifications" aria-labelledby="cert-h">
+      <div class="sec-head"><h2 id="cert-h">Certifications</h2><a class="more" href="https://www.linkedin.com/in/tarun-kumar-b8274230a/details/certifications/" target="_blank" rel="noopener noreferrer">Credentials on LinkedIn <span aria-hidden="true">↗</span></a></div>
+      <ol class="list">
+        <li class="card row-exp" id="k-mcp"><span class="mark logo logo-anthropic" aria-hidden="true"></span><div class="row-main"><p class="row-t">Introduction to Model Context Protocol</p><p class="row-o">Anthropic</p></div><p class="row-when">May 2026</p></li>
+        <li class="card row-exp" id="k-fluency"><span class="mark logo logo-anthropic" aria-hidden="true"></span><div class="row-main"><p class="row-t">AI Fluency: Framework and Foundations</p><p class="row-o">Anthropic</p></div><p class="row-when">May 2026</p></li>
+        <li class="card row-exp" id="k-nittany"><span class="mark logo logo-canvas" aria-hidden="true"></span><div class="row-main"><p class="row-t">Nittany AI Machine Learning Bootcamp 2024</p><p class="row-o">Canvas Credentials (Badgr)</p></div><p class="row-when">January 2025</p></li>
+      </ol>
+    </section>
+
+    <section class="sec" id="skills" aria-labelledby="skills-h">
+      <div class="sec-head"><h2 id="skills-h">Skills</h2></div>
+      <div class="skills">
+        <div><h3>Languages</h3><p class="tags"><span class="tag">Python</span><span class="tag">C++</span><span class="tag">C</span><span class="tag">Java</span><span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">SQL</span><span class="tag">Bash</span></p></div>
+        <div><h3>ML and data</h3><p class="tags"><span class="tag">PyTorch</span><span class="tag">Transformers</span><span class="tag">vLLM</span><span class="tag">LoRA and QLoRA</span><span class="tag">scikit-learn</span><span class="tag">pandas</span><span class="tag">NumPy</span><span class="tag">Optuna</span><span class="tag">RAG</span></p></div>
+        <div><h3>Systems and backend</h3><p class="tags"><span class="tag">Linux</span><span class="tag">Multithreading</span><span class="tag">TCP/IP</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">React</span><span class="tag">Next.js</span></p></div>
+        <div><h3>Infrastructure</h3><p class="tags"><span class="tag">Docker</span><span class="tag">Apptainer</span><span class="tag">HPC with SLURM</span><span class="tag">Git</span><span class="tag">Azure</span><span class="tag">GCP</span><span class="tag">Power BI</span></p></div>
+      </div>
+    </section>
+  </div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+  <div class="foot-row">
+    <div class="theme-set" role="group" aria-label="Theme">
+      <button type="button" class="icon-btn" data-theme-set="light" aria-pressed="false" aria-label="Light theme"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg></button>
+      <button type="button" class="icon-btn" data-theme-set="dark" aria-pressed="false" aria-label="Dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 13.2A8.5 8.5 0 1 1 10.8 3.5a6.6 6.6 0 0 0 9.7 9.7Z"/></svg></button>
+      <button type="button" class="icon-btn" data-theme-set="system" aria-pressed="false" aria-label="Match the system theme"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12.5" rx="2"/><path d="M8.5 20.5h7M12 16.5v4"/></svg></button>
+    </div>
+  </div>
+  </div>
+</footer>
+
+<div class="dock" aria-label="Shortcuts">
+  <button type="button" class="icon-btn" id="to-top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></button>
+</div>
+
+<dialog class="figbox" id="figbox" aria-labelledby="figbox-cap">
+  <button type="button" class="icon-btn figbox-x" data-close aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg></button>
+  <div class="figbox-img" role="img"></div>
+  <p class="figbox-cap" id="figbox-cap"></p>
+</dialog>
+<dialog class="demo" id="robot-demo" aria-labelledby="robot-demo-h">
+  <div class="demo-head">
+    <h2 id="robot-demo-h">The robot cell</h2>
+    <button type="button" class="icon-btn" data-close aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg></button>
+  </div>
+  <section class="cell" id="cell" aria-label="Robot cell">
+      <div class="cell-box">
+        <div class="cell-stage cell-wait" id="stage" tabindex="0" aria-describedby="cell-help">
+          <canvas id="cell-canvas" role="img" aria-label="A white Franka Emika Panda robot arm on a work bench, picking up small cardboard boxes and stacking them on a striped pad, largest first."></canvas>
+        </div>
+        <div class="cell-controls">
+          <button type="button" class="ap-toggle" id="ap-toggle" role="switch" aria-checked="true">
+            <span class="ap-label">Autopilot</span>
+            <span class="ap-track" aria-hidden="true"><span class="ap-knob"></span></span>
+            <span class="ap-state" id="ap-state" aria-hidden="true">On</span>
+          </button>
+        </div>
+      </div>
+      <p class="cell-caption" id="ap-note" role="status">Click a box to pick it up, then click where it should go.</p>
+      <p class="sr-only" id="cell-help">Turn off Autopilot to drive the arm. Click a box to pick it up, then click where it should go. With the robot cell focused, the arrow keys move the gripper, Enter picks up or puts down a box, and Space opens or closes the gripper.</p>
+    </section>
+</dialog>
+
+<script type="application/octet-stream" id="arm-data">{{ARMDATA}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+{{ROOMENV}}
+</script>
+<script>
+{{CANNON}}
+</script>
+<script>
+{{KIN}}
+</script>
+<script>
+{{SIM}}
+</script>
+<script>
+{{MAP}}
+</script>
+<script id="protein-sim">
+{{PROTEIN_SIM}}
+</script>
+<script>
+{{PROTEIN}}
+</script>
+<script>
+{{APP}}
+</script>
+</body>
+</html>

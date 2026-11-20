@@ -1,0 +1,4 @@
+gfp seed 1: melted in 11000, refold Q>0.8 in 28000, Q 0.80, ents now 0 (native 0 of 0)
+gfp seed 2: melted in 11000, refold Q>0.8 in 75000, Q 0.81, ents now 0 (native 0 of 0)
+gfp seed 3: melted in 12500, refold Q>0.8 in 18000, Q 0.82, ents now 0 (native 0 of 0)
+gfp seed 4: melted in 9000, refold Q>0.8 in 16000, Q 0.80, ents now 0 (native 0 of 0)

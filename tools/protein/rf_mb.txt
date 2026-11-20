@@ -1,0 +1,4 @@
+mb seed 1: melted in 12000, refold Q>0.8 in 180000, Q 0.81, ents now 0 (native 0 of 0)
+mb seed 2: melted in 94500, refold Q>0.8 in 232000, Q 0.80, ents now 0 (native 0 of 0)
+mb seed 3: melted in 24500, refold Q>0.8 in 181000, Q 0.83, ents now 0 (native 0 of 0)
+mb seed 4: melted in 50000, refold Q>0.8 in 346000, Q 0.84, ents now 0 (native 0 of 0)

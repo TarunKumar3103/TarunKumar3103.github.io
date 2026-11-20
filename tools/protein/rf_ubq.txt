@@ -1,0 +1,4 @@
+ubq seed 1: melted in 7500, refold Q>0.8 in 84000, Q 0.80, ents now 0 (native 0 of 0)
+ubq seed 2: melted in 11500, refold Q>0.8 in 48000, Q 0.90, ents now 0 (native 0 of 0)
+ubq seed 3: melted in 5500, refold Q>0.8 in 60000, Q 0.83, ents now 0 (native 0 of 0)
+ubq seed 4: melted in 8000, refold Q>0.8 in 15000, Q 0.80, ents now 0 (native 0 of 0)
