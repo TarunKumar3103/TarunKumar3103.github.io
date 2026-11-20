@@ -1,6 +1,6 @@
 # Tarun Kumar — portfolio
 
-My personal site: research, projects and experience, with a live protein-folding simulation and a robot-arm demo. Live at https://tarunkumar.pages.dev.
+My personal site: research, projects and experience, with a live protein-folding simulation and a robot-arm demo. Live at https://tarunkumar3103.github.io.
 
 It is one page (`dist/index.html`) with its pictures and scripts inlined. Beside it, `dist/models/panda.bin` is the robot model, fetched only when the robot demo opens, and `dist/og-image.png` is the picture LinkedIn and other sites show for a link to the site. Any static host can serve `dist/`.
 
@@ -34,7 +34,7 @@ LinkedIn, Slack and other sites read the `og:` tags at the top of the page and s
 python3 build.py && python3 tools/render_og.py && python3 build.py
 ```
 
-LinkedIn keeps the preview it fetched before. After a change goes live, paste https://tarunkumar.pages.dev into LinkedIn's [Post Inspector](https://www.linkedin.com/post-inspector/) to make it fetch the page again. If the site moves to another address, change `SITE` in `build.py`.
+LinkedIn keeps the preview it fetched before. After a change goes live, paste https://tarunkumar3103.github.io into LinkedIn's [Post Inspector](https://www.linkedin.com/post-inspector/) to make it fetch the page again. If the site moves to another address, change `SITE` in `build.py`.
 
 ## Update the resume
 
@@ -53,7 +53,9 @@ The checks serve `dist/` on a local port, as the host does, and each prints `ok`
 
 ## Publish
 
-Commit the source together with the rebuilt `dist/`. The host serves `dist/` with no build step, so the live site updates on every push.
+Commit the source together with the rebuilt `dist/`. On every push to `main`, GitHub Pages publishes `dist/` as it is, with no build step (`.github/workflows/pages.yml`), so the live site updates a minute or two later. The repository is named `TarunKumar3103.github.io` because GitHub serves a repository with that name at https://tarunkumar3103.github.io.
+
+The site is on GitHub Pages rather than a host like Cloudflare Pages or Netlify because LinkedIn's "Add a link" box (for the Featured section) wouldn't load a preview for `pages.dev` or `netlify.app` addresses, while `github.io` addresses work.
 
 ## Credits
 

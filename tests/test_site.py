@@ -4,7 +4,7 @@ from PIL import Image
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 THREE = (ROOT / 'vendor' / 'three.min.js').read_text()   # the page loads three.js r128 from cdnjs; tests serve this copy
 ARGS = ['--no-sandbox', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist']
-SITE = 'https://tarunkumar.pages.dev/'
+SITE = 'https://tarunkumar3103.github.io/'
 class Quiet(http.server.SimpleHTTPRequestHandler):
     def log_message(self, *args): pass
 # dist/ is served over HTTP as the host serves it, since the page fetches the robot model from models/

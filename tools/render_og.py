@@ -35,7 +35,7 @@ body { visibility: hidden; }
 """
 TEXT = """() => { const d = document.createElement('div'); d.className = 'og-text';
   d.innerHTML = '<p class="og-name">Tarun<br>Kumar</p><p class="og-role">ML researcher and engineer</p>';
-  const u = document.createElement('p'); u.className = 'og-url'; u.textContent = 'tarunkumar.pages.dev';
+  const u = document.createElement('p'); u.className = 'og-url'; u.textContent = 'tarunkumar3103.github.io';
   document.body.append(d, u); }"""
 
 

@@ -1,7 +1,7 @@
 # Builds dist/: the page (index.html) with its pictures, physics and scripts inline, the robot model it fetches
 # when the robot demo opens (models/panda.bin), and the picture link previews show (og-image.png).
 import base64, json, pathlib, shutil
-SITE = 'https://tarunkumar.pages.dev/'   # the live address, for the link-preview tags; change it here if the site moves
+SITE = 'https://tarunkumar3103.github.io/'   # the live address, for the link-preview tags; change it here if the site moves
 LINK_PREVIEW_MAX = 3_000_000             # LinkedIn shows no preview at all for a page over 3 MiB (3,145,728 bytes)
 root = pathlib.Path(__file__).parent
 vendor = root / 'vendor'                # third-party code and data: arm model and kinematics, cannon-es, three.js RoomEnvironment
