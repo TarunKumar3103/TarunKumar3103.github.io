@@ -55,7 +55,7 @@ The checks serve `dist/` on a local port, as the host does, and each prints `ok`
 
 Commit the source together with the rebuilt `dist/`. On every push to `main`, GitHub Pages publishes `dist/` as it is, with no build step (`.github/workflows/pages.yml`), so the live site updates a minute or two later. The repository is named `TarunKumar3103.github.io` because GitHub serves a repository with that name at https://tarunkumar3103.github.io.
 
-The site is on GitHub Pages rather than a host like Cloudflare Pages or Netlify because LinkedIn's "Add a link" box (for the Featured section) wouldn't load a preview for `pages.dev` or `netlify.app` addresses, while `github.io` addresses work.
+The site moved here from Cloudflare Pages (`tarunkumar.pages.dev`) because LinkedIn's "Add a link" box, for the Featured section, wouldn't load a preview for that address. For an address LinkedIn hasn't seen before, the box can also take a few minutes before it loads a preview, so try again after a short wait.
 
 ## Credits
 
