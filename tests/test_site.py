@@ -1,9 +1,16 @@
-import asyncio, json, os, pathlib, shutil
+import asyncio, functools, http.server, json, os, pathlib, shutil, threading
 from playwright.async_api import async_playwright
+from PIL import Image
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 THREE = (ROOT / 'vendor' / 'three.min.js').read_text()   # the page loads three.js r128 from cdnjs; tests serve this copy
 ARGS = ['--no-sandbox', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist']
-URL = (ROOT / 'dist' / 'index.html').as_uri()
+SITE = 'https://tarunkumar.pages.dev/'
+class Quiet(http.server.SimpleHTTPRequestHandler):
+    def log_message(self, *args): pass
+# dist/ is served over HTTP as the host serves it, since the page fetches the robot model from models/
+server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), functools.partial(Quiet, directory=str(ROOT / 'dist')))
+threading.Thread(target=server.serve_forever, daemon=True).start()
+URL = f'http://127.0.0.1:{server.server_address[1]}/index.html'
 CHROME = os.environ.get('CHROME') or shutil.which('google-chrome')   # None: Playwright's own Chromium
 def ok(cond, what, extra=''): print('ok  ' if cond else 'FAIL', what, extra)
 BOXED_IN = """(both) => {
@@ -358,6 +365,18 @@ async def main():
            'Resume opens its own page showing the resume, with the PDF on Google Drive a click away in a new tab', st)
         st = await ev("() => [...document.querySelectorAll('.socials a')].map(a => [a.textContent.trim(), a.getAttribute('href'), a.target])")
         ok(len(st) == 3 and st[2] == ['Resume', 'https://drive.google.com/file/d/1Rt1joG4-UaYsHWgOiLSGYVh0AZm84njM/view', '_blank'], 'Connect has a Resume label beside GitHub and LinkedIn that opens the PDF on Google Drive in a new tab', st)
+
+        # the link preview LinkedIn shows: the tags at the top of the page, the picture, and a page small enough to be read
+        st = await ev("""async () => { const m = Object.fromEntries([...document.querySelectorAll('meta[property^="og:"], meta[name="twitter:card"]')]
+            .map(e => [e.getAttribute('property') || e.getAttribute('name'), e.content]));
+          return [m, (await fetch('og-image.png')).status, document.head.innerHTML.indexOf('og:image'), !!document.getElementById('arm-data')]; }""")
+        size = (ROOT / 'dist' / 'index.html').stat().st_size
+        with Image.open(ROOT / 'dist' / 'og-image.png') as im: dims = im.size
+        m = st[0]
+        ok(m.get('og:url') == SITE and m.get('og:image') == SITE + 'og-image.png' and m.get('og:title', '').startswith('Tarun Kumar') and m.get('og:description')
+           and (m.get('og:image:width'), m.get('og:image:height')) == ('1200', '630') and dims == (1200, 630) and m.get('twitter:card') == 'summary_large_image'
+           and st[1] == 200 and 0 < st[2] < 3000, 'the page has link-preview tags near the top of its head, pointing to a 1200 x 630 picture that is there', [m, st[1:3], dims])
+        ok(size < 3_000_000 and not st[3], 'the page is small enough for LinkedIn to preview (under 3 MiB), with the robot model fetched separately', f'{size:,} bytes')
         print('errors:', errs or 'none')
         await b.close()
 asyncio.run(main())

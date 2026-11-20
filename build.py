@@ -1,5 +1,8 @@
-# Builds dist/index.html: one self-contained page with the arm model, physics and scripts inline.
+# Builds dist/: the page (index.html) with its pictures, physics and scripts inline, the robot model it fetches
+# when the robot demo opens (models/panda.bin), and the picture link previews show (og-image.png).
 import base64, json, pathlib, shutil
+SITE = 'https://tarunkumar.pages.dev/'   # the live address, for the link-preview tags; change it here if the site moves
+LINK_PREVIEW_MAX = 3_000_000             # LinkedIn shows no preview at all for a page over 3 MiB (3,145,728 bytes)
 root = pathlib.Path(__file__).parent
 vendor = root / 'vendor'                # third-party code and data: arm model and kinematics, cannon-es, three.js RoomEnvironment
 src = root / 'src'
@@ -7,8 +10,6 @@ t = (src / 'index.template.html').read_text()
 kin_js = 'window.PANDA_KIN = ' + json.dumps(json.loads((vendor / 'panda-kin.json').read_text()), separators=(',', ':')) + ';'
 room = '/* RoomEnvironment from three.js r128 examples (MIT License, three.js authors), after model-viewer */\n' + \
     (vendor / 'RoomEnvironment.js').read_text()
-arm_b64 = base64.b64encode((vendor / 'panda.bin').read_bytes()).decode()
-arm_b64 = '\n'.join(arm_b64[i:i + 4096] for i in range(0, len(arm_b64), 4096))
 def uri(name):
     f = root / 'assets' / name
     return 'data:image/jpeg;base64,' + base64.b64encode(f.read_bytes()).decode() if f.exists() else ''
@@ -38,7 +39,7 @@ if not cv_img.exists() or cv_img.stat().st_mtime < cv.stat().st_mtime:
     Image.frombytes('L', (pix.width, pix.height), pix.samples).save(cv_img, 'WEBP', lossless=True, method=6)
 assert t.count('{{RESUME_IMG}}') == 1
 t = t.replace('{{RESUME_IMG}}', 'data:image/webp;base64,' + base64.b64encode(cv_img.read_bytes()).decode())
-parts = [('{{ARMDATA}}', arm_b64), ('{{STYLES}}', styles), ('{{ROOMENV}}', room), ('{{CANNON}}', (vendor / 'cannon.min.js').read_text()),
+parts = [('{{STYLES}}', styles), ('{{ROOMENV}}', room), ('{{CANNON}}', (vendor / 'cannon.min.js').read_text()),
          ('{{KIN}}', kin_js), ('{{SIM}}', (src / 'sim3d-core.js').read_text()), ('{{MAP}}', (src / 'map.js').read_text()),
          ('{{PROTEIN_SIM}}', (src / 'protein-sim.js').read_text()),
          ('{{PROTEIN}}', 'window.PROTEIN_DATA = ' + (src / 'protein-data.json').read_text().strip() + ';\n' + (src / 'protein.js').read_text()),
@@ -48,10 +49,16 @@ for key, body in parts:
     assert '</script' not in low and '<!--' not in low and '<script' not in low, key
     assert t.count(key) == 1, key
     t = t.replace(key, body)
+assert t.count('{{SITE}}') == 3
+t = t.replace('{{SITE}}', SITE)
 assert '{{' not in t
+size = len(t.encode())
+assert size < LINK_PREVIEW_MAX, f'the page is {size:,} bytes: over {LINK_PREVIEW_MAX:,}, LinkedIn shows no preview for it. Move something out of the page, as models/panda.bin is.'
 (root / 'dist').mkdir(exist_ok=True)
 (root / 'dist' / 'index.html').write_text(t)
 (root / 'dist' / 'models').mkdir(parents=True, exist_ok=True)
+shutil.copyfile(vendor / 'panda.bin', root / 'dist' / 'models' / 'panda.bin')
 shutil.copyfile(vendor / 'LICENSE-franka-panda.txt', root / 'dist' / 'models' / 'LICENSE.txt')
+shutil.copyfile(root / 'assets' / 'og-image.png', root / 'dist' / 'og-image.png')   # drawn by tools/render_og.py
 (root / 'dist' / 'Tarun_Kumar_Resume.pdf').unlink(missing_ok=True)   # the PDF itself lives on Google Drive, linked from the page
-print('built', len(t), 'bytes')
+print('built', f'{size:,}', 'bytes')
